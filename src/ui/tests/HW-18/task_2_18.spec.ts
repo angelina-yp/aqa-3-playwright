@@ -31,6 +31,8 @@ test.describe("[UI][Smoke] registration", () => {
          await page.locator("#password").fill("123456");
          await page.locator("#password-confirm").fill("123456");
          await page.locator("//button[@class='btn btn-primary']").click();
+         await expect(page).toHaveURL('https://anatoly-karpovich.github.io/demo-registration-form/');
+         //await expect(page.url()).toBe('https://anatoly-karpovich.github.io/demo-registration-form/');
          await expect(page.locator('//h2[@class="text-center"]')).toContainText('Registration Details');
 
           await expect(page.locator("#fullName")).toContainText("ABC QWERty");
@@ -43,6 +45,17 @@ test.describe("[UI][Smoke] registration", () => {
           await expect(page.locator("#skills")).toContainText("JavaScript");
           await expect(page.locator("#hobbies")).toContainText("Sports");
           await expect(page.locator("#dateOfBirth")).toContainText("12 September 1991");
+
+          // Проверка значения в localStorage
+    const storageValue = await page.evaluate(() => {
+      return localStorage.getItem('formData');
+    });
+    expect(storageValue).toBe('{"firstName":"ABC","lastName":"QWERty","address":"11-22","email":"qwerty@rambler.ru","phone":"123456","gender":"male","language":"ru","year":"1991","month":"September","day":"12","country":"Canada","skills":["JavaScript"],"hobbies":["Sports"],"password":"123456"}');
+        
+          const locator = page.locator('#password');
+          const innerText = await locator.innerText()
+          await expect(innerText).toHaveLength(6);
           await expect(page.locator("#password")).toHaveText("******");
+          
       });
     });    
