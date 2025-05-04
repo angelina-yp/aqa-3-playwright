@@ -1,0 +1,19 @@
+import { ISignIn } from "types/signIn.type";
+import { SalesPortalPage } from "./salesPortal.page";
+
+export class SignInPage extends SalesPortalPage{
+  emailInput = this.page.locator("#emailinput");
+  passwordInput = this.page.locator("#passwordinput");
+  submitButton = this.page.getByRole("button", { name: "Login" });
+
+  
+    uniqueElement = this.submitButton;
+     
+    async fillInput(user: ISignIn) {
+        user.email && (await this.emailInput.fill(user.email));
+        user.password && (await this.passwordInput.fill(user.password));
+    }
+    async clickSubmitsButton() {
+      await this.submitButton.click();
+    }
+  }
