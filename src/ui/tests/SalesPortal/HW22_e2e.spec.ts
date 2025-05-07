@@ -23,7 +23,7 @@ import { expect, test } from "fixtures/businessSteps.fixture";
 
 
 test.describe("[UI] [Sales Portal] [Customers]", async () => {
-  test("Should add and delete customer on Customer page", async ({ loginAsLocalUser, homePage, customersPage, addNewCustomerPage, editCustomerPage }) => {
+  test("Should add and delete customer on Customer page", async ({ loginAsLocalUser, homePage, customersPage, addNewCustomerPage }) => {
     //Зайти на сайт Sales Portal
     //Залогиниться с вашими кредами
     await loginAsLocalUser();
