@@ -1,4 +1,4 @@
-enum COUNTRIES {
+export enum COUNTRIES {
     USE = "USA",
     CANADA = "Canada",
     BELARUS = "Belarus",
