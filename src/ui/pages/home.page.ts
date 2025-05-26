@@ -41,6 +41,12 @@ export class HomePage extends SalesPortalPage {
   productsButton = this.page.getByRole("link", { name: "Products" });
   ordersButton = this.page.getByRole("link", { name: "Orders" });
 
+
+  ordersThisYearMetric = this.page.locator('#total-orders-container').locator('.card-text.display-6')
+  newCustomersMetric = this.page.locator('#total-customers-container').locator('.card-text.display-6');
+  cancelledOrdersMetric = this.page.locator('#canceled-orders-container').locator('.card-text.display-6');
+
+
   uniqueElement = this.title;
 
   async clickModuleButton(moduleName: ModuleName) {
@@ -51,5 +57,16 @@ export class HomePage extends SalesPortalPage {
     };
 
     await moduleButtons[moduleName].click();
+  }
+
+  async getMetrics(metrics: string) {
+    switch (metrics) {
+        case 'Orders This Year':
+            return Number(await this.ordersThisYearMetric.innerText());
+        case 'New Customers':
+            return Number(await this.newCustomersMetric.innerText());
+        case 'Canceled Orders':
+            return await Number(await this.cancelledOrdersMetric.innerText());
+    }
   }
 }
