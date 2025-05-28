@@ -3,9 +3,19 @@ import { SalesPortalPage } from "../salesPortal.page";
 import { FilterModal } from "../moduls/customrs/filter.modals";
 import { DeleteCustomerModal } from "../moduls/customrs/delete.modal";
 import { COUNTRIES } from "data/customers/countries.data";
+import { customersSortField } from "types/api.types";
 
 
 export class CustomersPage extends SalesPortalPage {
+    table(table: any) {
+        throw new Error("Method not implemented.");
+    }
+    interceptRequest(CUSTOMERS: string, arg1: any, arg2: string) {
+        throw new Error("Method not implemented.");
+    }
+    open() {
+        throw new Error("Method not implemented.");
+    }
     getFormErrors() {
         throw new Error("Method not implemented.");
     }
@@ -24,6 +34,9 @@ export class CustomersPage extends SalesPortalPage {
     readonly chipButton = this.page.locator(".chip");
     readonly searchChipButton = this.page.locator('div[data-chip-customers="search"]');
   
+      //Table
+   readonly table1 = this.page.locator("#table-customers");
+
     //Table headers
     readonly tableHeader = this.page.locator("#table-customers th div");
     readonly emailHeader = this.tableHeader.filter({ hasText: "Email" });
@@ -122,5 +135,21 @@ export class CustomersPage extends SalesPortalPage {
       await this.fillSearch(value);
       await this.clickSearch();
       await this.waitForOpened();
+    }
+    async clickTableHeader(header: customersSortField) {
+      switch (header) {
+        case "email":
+          await this.emailHeader.click();
+          break;
+        case "name":
+          await this.nameHeader.click();
+          break;
+        case "country":
+          await this.countryHeader.click();
+          break;
+        case "createdOn":
+          await this.createdOnHeader.click();
+          break;
+      }
     }
 }
