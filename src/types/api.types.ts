@@ -125,3 +125,5 @@ export interface ITopCustomer {
   customerName: string;
   customerEmail: string;
 }
+
+export type productSortField = "createdOn" | "name" | "price" | "manufacturer";

@@ -66,7 +66,7 @@ export class HomePage extends SalesPortalPage {
         case 'New Customers':
             return Number(await this.newCustomersMetric.innerText());
         case 'Canceled Orders':
-            return await Number(await this.cancelledOrdersMetric.innerText());
+            return Number(await this.cancelledOrdersMetric.innerText());
     }
   }
 }

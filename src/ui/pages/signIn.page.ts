@@ -10,7 +10,7 @@ export class SignInPage extends SalesPortalPage{
     uniqueElement = this.submitButton;
      
     async fillCredentials(user: ISignIn) {
-        user.email && (await this.emailInput.fill(user.email));
+        user.username && (await this.emailInput.fill(user.username));
         user.password && (await this.passwordInput.fill(user.password));
     }
     async clickSubmitsButton() {
