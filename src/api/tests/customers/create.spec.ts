@@ -143,7 +143,17 @@ test.describe("[API] [Customers] [Create]", () => {
       .soft(customerResponse.body.Customer)
       .toMatchObject({ ...customerData });
   });
+/*test("Create customer with smoke data and Controller", async ({ request, customersController, signInApiService }) => {
+        token = await signInApiService.loginAsLocalUser();
 
+        const customerData = generateCustomerData();
+        const customerResponse = await customersController.create(customerData, token);
+        id = customerResponse.body.Customer._id;
+
+        validateSchema(customerSchema, customerResponse.body);
+        validateResponse(customerResponse, STATUS_CODES.CREATED, true, null);
+        expect.soft(customerResponse.body.Customer).toMatchObject({ ...customerData });
+    });*/
   test.afterEach(async ({ customersController }) => {
     if (!id) return;
     const response = await customersController.delete(id, token);
